@@ -36,7 +36,7 @@ private textNosucc = 'Erreur Login ou mot de passe ! Réessayer';
     console.log("dataClient",this.credentials)
     this.auth.login(this.credentials).subscribe(
         (data)=>{
-       
+          localStorage.setItem('datauser',data.user.username)
             localStorage.setItem('userId',data.user.id)
             this.router.navigate(['/film'])
            
