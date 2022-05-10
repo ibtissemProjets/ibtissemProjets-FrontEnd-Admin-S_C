@@ -1,0 +1,60 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .my-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .my-checkbox__input {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+    background-color: transparent;
+  }
+  
+  .my-checkbox__input:checked:before {
+    background: #c6d9d9;
+  }
+  
+  .my-checkbox__input:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 0.0625rem solid #c6d9d9;
+    background-color: transparent;
+    transition: background-color 0.2s;
+  }
+  
+  .my-checkbox__input:checked:after {
+    width: 0.75rem;
+    height: 0.375rem;
+    transition: height 0.08s ease-out, width 0.08s ease-out 0.1s;
+    border-color: #536060;
+  }
+  
+  .my-checkbox__input:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform: rotate(-45deg);
+    transform-origin: 1.125rem -0.0625rem;
+    border-bottom: 0.125rem solid transparent;
+    border-left: 0.125rem solid transparent;
+  }
+  
+  .my-checkbox__label {
+    margin-left: 0.5rem;
+  }
+  

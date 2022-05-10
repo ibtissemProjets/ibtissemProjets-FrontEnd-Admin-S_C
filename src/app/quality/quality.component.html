@@ -1,0 +1,99 @@
+<div class="text-center">
+  
+  <div class="main-card mb-3 card">  
+  <h3>Gestion des qualités des films</h3></div>
+</div>
+<div class="row">
+  <div class="col-sm">
+  <input type="search" class=" rounded"   style="margin-top: 20px;margin-left: 20px;"  [(ngModel)]="filterString" (ngModelChange)="onFilterChange()" placeholder="Recherche" aria-label="Search" aria-describedby="search-addon" />
+ 
+ </div> 
+ <div class="col-sm">
+   </div>
+   <div class="col-sm">
+  </div>
+  <div class="col-sm">
+  </div>
+ <div class="col-sm">
+  <button type="button" style="margin-top: 20px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
+  Ajouter qualité
+   </button> 
+   </div> 
+</div>
+
+<div   style="margin-top: 20px;"  >
+ <div class="main-card mb-3 card">
+   <div class="card-header">
+    <b>Liste des Qualités</b>
+   </div>
+   <div class="table-responsive">
+     <table  class="align-middle mb-0 table table-borderless table-striped table-hover">
+      <thead >
+       <tr>
+        <th class="text-center">Id</th>
+        <th class="text-center">Libelle</th>
+        <th class="text-center">Action</th>
+       </tr>
+      </thead>
+
+      <tbody>
+       <tr *ngFor="let qlt of filtered| paginate: { itemsPerPage: 5, currentPage: p }">
+        <td class="text-center">{{qlt.id}}</td>
+        <td class="text-center">{{qlt.libelle}}</td>
+        <td class="text-center">
+            <button style=" margin:5px;" (click)="openModal(template,qlt.id,qlt.libelle)" class="mr-2 btn-icon btn-icon-only btn btn-warning">
+              <i class="pe-7s-repeat btn-icon-wrapper"></i>
+            </button>
+            <button class="mr-2 btn-icon btn-icon-only btn btn-danger" (click)="deleteQlt(qlt.id)">
+            <i class="pe-7s-trash btn-icon-wrapper"> </i>
+           </button>
+        </td>
+      </tr>
+      </tbody>
+     </table>
+   </div>
+   
+ </div>
+ 
+ </div>
+<!--Pagination-->
+<div class="pagination">
+  <pagination-controls class="text-center" (pageChange)="p = $event" class="float-right"></pagination-controls>
+</div>
+<!---->
+ <ng-template #template>
+    
+	<div class="content-content">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+</button>
+<!-- main app container -->
+<div class="card m-3">
+  <span *ngIf="checkIdUpdateQlt  ">         <h5 class="card-header">Mise a jour  Qualité</h5> </span>
+  <span *ngIf="!checkIdUpdateQlt  ">     <h5 class="card-header">Ajouter une nouvelle qualité</h5> </span>
+  <div class="card-body">
+    <form [formGroup]="registerFormQlt" (ngSubmit)="onSubmitQlt()">
+      <div class="row">
+       <div class="form-group col-6">
+         <label>libelle qualité </label>
+         <input type="text"  [(ngModel)]="libQtUpdated" formControlName="libelle" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && u.libelle.errors }" />
+         <div *ngIf="submitted && u.libelle.errors" class="invalid-feedback">
+           <div *ngIf="u.libelle.errors.required">libelle obligatoire</div>
+         </div>
+       </div>
+     </div>
+         <div class="text-center">
+           <button class="btn btn-primary mr-1">Sauvegarder</button>
+           <button class="btn btn-danger mr-1" type="reset" (click)="onReset()">Annuler</button>
+         </div>
+
+      
+       
+     </form>
+  </div>
+</div>
+
+</div>
+ 
+</ng-template>

@@ -1,0 +1,158 @@
+<div [class]="'app-sidebar sidebar-shadow ' + (config$ | async).sidebarTheme" (mouseover)="sidebarHover()"
+  (mouseout)="sidebarHover()">
+  <div class="app-header__logo">
+    <div class="logo-src"></div>
+    <div class="header__pane ml-auto">
+      <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+        [ngClass]="{'is-active' : globals.toggleSidebar}" (click)="toggleSidebar()">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="app-sidebar-content">
+    <div class="app-sidebar-scroll">
+      <perfect-scrollbar [autoPropagation]="true">
+        <div class="v-sidebar-menu vsm-default">
+          <div class="vsm-list">
+            <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" [activeIds]="extraParameter">
+              <ngb-panel>
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-header">Menu </div>
+                </ng-template>
+              </ngb-panel>
+
+              //gestion profile
+              <ngb-panel id="tablesMenu">
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-item">
+                    <a routerLink="/profile" routerLinkActive="active-item" class="vsm-link">
+                      <i class="vsm-icon pe-7s-graph2"></i>
+                      <span class="vsm-title">Profile</span>
+                    </a>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              //gestion films
+              <ngb-panel id="elementsMenu">
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-item">
+                    <a routerLink="/film" routerLinkActive="active-item" class="vsm-link">
+                      <i class="vsm-icon pe-7s-graph2"></i>
+                      <span class="vsm-title"> Gestion de film</span>
+                    </a>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              //gestion users
+              <ngb-panel id="componentsMenu">
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-item">
+                    <a routerLink="/user" routerLinkActive="active-item" class="vsm-link">
+                      <i class="vsm-icon pe-7s-graph2"></i>
+                      <span class="vsm-title"> Gestion des Clients</span>
+                    </a>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              //gestion statistics
+              <ngb-panel id="formElementsMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-helm"></i>
+                    <span class="vsm-title"> Statistics</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink=" " class="vsm-link"><span
+                            class="vsm-title"> Consulter Nat.films</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink=" " class="vsm-link">
+                          <span class="vsm-title"> Chart New Inscri. </span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink=" " class="vsm-link">
+                          <span class="vsm-title"> Chart Ventes</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink=" " class="vsm-link">
+                          <span class="vsm-title"> Chart Categories</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              //gestion paramétres films
+              <ngb-panel id="2">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-helm"></i>
+                    <span class="vsm-title"> Paramétres Films</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/Nationalite" class="vsm-link">
+                          <span class="vsm-title"> Nationalités</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/categorie" class="vsm-link">
+                          <span class="vsm-title">Categories</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/quatlite" class="vsm-link">
+                          <span class="vsm-title">Qualités</span></a>
+                      </div>
+
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              //gestion vitrine
+              <ngb-panel id="3">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-helm"></i>
+                    <span class="vsm-title">Vitrine</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/Nationalite" class="vsm-link">
+                          <span class="vsm-title"> gestion carrousel</span></a>
+                      </div>
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/categorie" class="vsm-link">
+                          <span class="vsm-title"> gestion images</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+
+            </ngb-accordion>
+
+          </div>
+        </div>
+      </perfect-scrollbar>
+    </div>
+  </div>
+</div>

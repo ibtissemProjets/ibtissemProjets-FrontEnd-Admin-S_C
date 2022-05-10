@@ -1,0 +1,129 @@
+<div class="text-center">
+  
+  <div class="main-card mb-3 card">  
+  <h3>Gestion des clients</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+  <input type="search" class=" rounded"   style="margin-top: 20px;margin-left: 20px;"  [(ngModel)]="filterString" (ngModelChange)="onFilterChange()" placeholder="Recherche" aria-label="Search" aria-describedby="search-addon" />
+  </div> 
+ </div>
+//affichage users
+<div   style="margin-top: 20px;"  >
+ <div class="main-card mb-3 card">
+   <div class="card-header">
+    <b>Liste des Clients</b>
+   </div>
+   <div class="table-responsive">
+     <table  class="align-middle mb-0 table table-borderless table-striped table-hover">
+      <thead >
+       <tr>
+        <th class="text-center">Id</th>
+        <th class="text-center">Prenom</th>
+        <th class="text-center">Nom</th>
+        <th class="text-center">Date Naissance</th>
+        <th class="text-center">Email</th>
+        <th class="text-center">Action</th>
+       </tr>
+      </thead>
+
+      <tbody>
+       <tr *ngFor="let user of filtered| paginate: { itemsPerPage: 5, currentPage: p }">
+        <td class="text-center">{{user.id}}</td>
+        <td class="text-center">{{user.firstname}}</td>
+        <td class="text-center">{{user.lastname}}</td>
+        <td class="text-center">{{user.dateNaiss}}</td>
+        <td class="text-center">{{user.email}}</td>
+        <td class="text-center">
+           <button type="button" class="mr-2 btn-icon btn-icon-only btn btn-success">  <i class="pe-7s-note2
+            btn-icon-wrapper"> </i></button>
+            <button class="mr-2 btn-icon btn-icon-only btn btn-danger" (click)="deleteUser(user.id)">
+            <i class="pe-7s-trash btn-icon-wrapper"> </i>
+           </button>
+        </td>
+      </tr>
+      </tbody>
+     </table>
+   </div>
+   
+ </div>
+ 
+ </div>
+<!--Pagination-->
+<div class="pagination">
+  <pagination-controls class="text-center" (pageChange)="p = $event" class="float-right"></pagination-controls>
+</div>
+
+<!--Ajout user-->
+<ng-template #template>
+
+  <div class="content-content">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- main app container -->
+    <div class="card m-3">
+      <h5 class="card-header">Ajouter utilisateur</h5>
+      <div class="card-body">
+        <form [formGroup]="registerFormUser" (ngSubmit)="onSubmitUser()">
+
+          <div class="form-group col-6">
+            <label>Prenom </label>
+            <input type="text" formControlName="firstname" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && u.firstname.errors }" />
+            <div *ngIf="submitted && u.firstname.errors" class="invalid-feedback">
+              <div *ngIf="u.firstname.errors.required">Prenom obligatoire</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label> Nom </label>
+            <input type="text" formControlName="lastname" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && u.lastname.errors }" />
+            <div *ngIf="submitted && u.lastname.errors" class="invalid-feedback">
+              <div *ngIf="u.lastname.errors.required">Nom obligatoire</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label> Date Naissance</label>
+            <input type="text" formControlName="dateNaiss" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && u.dateNaiss.errors }" />
+            <div *ngIf="submitted && u.dateNaiss.errors" class="invalid-feedback">
+              <div *ngIf="u.dateNaiss.errors.required">date naissance obligatoire</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label>Email</label>
+            <input type="text " formControlName="email" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && u.email.errors }" />
+            <div *ngIf="submitted && u.email.errors" class="invalid-feedback">
+              <div *ngIf="u.email.errors.required">email obligatoire</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label>Mot de pass</label>
+            <input type="text " formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && u.password.errors }" />
+            <div *ngIf="submitted && u.password.errors" class="invalid-feedback">
+              <div *ngIf="u.password.errors.required">password obligatoire</div>
+            </div>
+          </div>
+
+
+          <div class="text-center">
+            <button class="btn btn-primary mr-1"> Sauvegarder</button>
+            <button class="btn btn-danger mr-1" type="reset" (click)="onReset()"> Annuler</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</ng-template>
+    

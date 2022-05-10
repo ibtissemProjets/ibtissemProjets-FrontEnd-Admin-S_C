@@ -1,0 +1,258 @@
+<div class="text-center">
+  
+  <div class="main-card mb-3 card">  
+  <h3>Gestion des films</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+  <input type="search" class=" rounded"   style="margin-top: 20px;margin-left: 20px;"  [(ngModel)]="filterString" (ngModelChange)="onFilterChange()" placeholder="Recherche" aria-label="Search" aria-describedby="search-addon" />
+ 
+ </div> 
+ <div class="col-sm">
+   </div>
+   <div class="col-sm">
+  </div>
+  <div class="col-sm">
+  </div>
+ <div class="col-sm">
+  <button type="button" style="margin-top: 20px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
+  Ajouter film
+   </button> 
+   </div> 
+</div>
+
+<div   style="margin-top: 20px;"  >
+ <div class="main-card mb-3 card">
+   <div class="card-header">
+    <b>Liste des Films</b>
+   </div>
+   <div class="table-responsive">
+     <table  class="align-middle mb-0 table table-borderless table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">Id</th>
+          <th class="text-center">Titre</th>
+          <th class="text-center">Prix</th>
+          <th class="text-center">Duree</th>
+          <th class="text-center">Date Lancement</th>
+          <th class="text-center">Diffusion</th>
+          <!--<th class="text-center">Qualite</th>
+          <th class="text-center">Nationalite</th> -->
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      
+        <tr *ngFor="let film of filtered   | paginate: { itemsPerPage: 5, currentPage: p }">
+      
+          <td class="text-center">{{film.id}}</td>
+          <td class="text-center">{{film.titre}}</td>
+          <td class="text-center">{{film.prix}}</td>
+          <td class="text-center">{{film.duree}}</td>
+          <td class="text-center">{{film.dateLancement}}</td>
+          <td class="text-center">{{film.diffusion}}</td>
+          <td class="text-center">
+            <button type="button" (click)="openModal2(template2,film.id)"class="mr-2 btn-icon btn-icon-only btn btn-success">  <i class="pe-7s-note2
+              btn-icon-wrapper"> </i></button>
+            <button style=" margin:5px;" class="mr-2 btn-icon btn-icon-only btn btn-warning">
+              <i class="pe-7s-repeat btn-icon-wrapper"></i>
+            </button>
+            <button class="mr-2 btn-icon btn-icon-only btn btn-danger" (click)="deletefilm(film.id)">
+              <i class="pe-7s-trash btn-icon-wrapper"> </i>
+            </button>
+            <!--<button class="mr-2 btn-icon btn-icon-only btn btn-primary" >
+              <i class="pe-7s-photo btn-icon-wrapper"> </i>
+            </button>-->
+          </td>
+      
+        </tr>
+      </tbody>
+    </table>
+   </div>
+ </div>
+ 
+ </div>
+
+ <div class="pagination">
+  <pagination-controls class="text-center" (pageChange)="p = $event" class="float-right"></pagination-controls>
+</div>
+
+ //ajout film
+<ng-template #template>
+  <div class="content-content">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- main app container -->
+    <div class="card m-3">
+      <h5 class="card-header">Ajouter un nouveau Film</h5>
+      <div class="card-body">
+        <form [formGroup]="registerFormFilm" (ngSubmit)="onSubmitFilm()">
+       
+          <!--titre+prix-->
+          <div class="row">
+          <div class="form-group col-6">
+            <label>Titre Film </label>
+            <input type="text" formControlName="titre" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.titre.errors }" />
+            <div *ngIf="submitted && f.titre.errors" class="invalid-feedback">
+              <div *ngIf="f.titre.errors.required">titre obligatoire</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label>Prix Film </label>
+            <input type="number" formControlName="prix" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.prix.errors }" />
+            <div *ngIf="submitted && f.prix.errors" class="invalid-feedback">
+              <div *ngIf="f.prix.errors.required">prix obligatoire</div>
+            </div>
+          </div>
+        </div>
+        <!--duree+dateLancement-->
+        <div class="row">
+          <div class="form-group col-6">
+            <label> Date Lancement</label>
+            <input type="date" formControlName="dateLancement" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.dateLancement.errors }" />
+            <div *ngIf="submitted && f.dateLancement.errors" class="invalid-feedback">
+              <div *ngIf="f.dateLancement.errors.required">date Lancement obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <label> Duree en minutes</label>
+            <input type="text" formControlName="duree" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.duree.errors }" />
+            <div *ngIf="submitted && f.duree.errors" class="invalid-feedback">
+              <div *ngIf="f.duree.errors.required">durée obligatoire</div>
+            </div>
+          </div>
+        </div>
+        <!--diffusion+auteur-->
+        <div class="row">
+          <div class="form-group col-6">
+            <label>Diffusion</label>
+            <input type="text " formControlName="diffusion" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.diffusion.errors }" />
+            <div *ngIf="submitted && f.diffusion.errors" class="invalid-feedback">
+              <div *ngIf="f.diffusion.errors.required">diffusion obligatoire</div>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <label>Auteur</label>
+            <input type="text " formControlName="auteur" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.auteur.errors }" />
+            <div *ngIf="submitted && f.auteur.errors" class="invalid-feedback">
+              <div *ngIf="f.auteur.errors.required">Auteur obligatoire</div>
+            </div>
+          </div>
+          </div>
+          <!--discription-->
+          <div class="row">
+          <div class="form-group col-6">
+            <label>Description</label>
+            <input type="text " formControlName="discription" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.discription.errors }" />
+            <div *ngIf="submitted && f.discription.errors" class="invalid-feedback">
+              <div *ngIf="f.discription.errors.required">discription obligatoire</div>
+            </div>
+          </div>
+          </div>
+          <!--qualite-->
+            <div class="form-row">
+              <div class="form-group col">
+                <label>Qualité</label>
+                  <select selectedIdquelite [(ngModel)]="selectedIdQuelite" formControlName="qualite" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.qualite.errors }">
+                  <div *ngIf="submitted && f.qualite.errors" class="invalid-feedback">
+                    <div *ngIf="f.qualite.errors.required">qualité obligatoire</div>
+                  </div>
+                  <option [ngValue]="undefined">choisir qualite </option>
+                  <option *ngFor="let obj of listqtl" [ngValue]="obj.id" [selected]="obj.id == selectedIdQuelite"> {{obj.libelle}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <!--nationalité-->
+            <div class="form-row">
+              <div class="form-group col">
+                <label>Nationalité</label>
+                  <select selectedIdNationalite [(ngModel)]="selectedIdNationalite" formControlName="NationaliteId" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.NationaliteId.errors }">
+                  <div *ngIf="submitted && f.NationaliteId.errors" class="invalid-feedback">
+                    <div *ngIf="f.NationaliteId.errors.required">nationalité obligatoire</div>
+                  </div>
+                  <option [ngValue]="undefined">choisir nationalité </option>
+                  <option *ngFor="let obj of nltList" [ngValue]="obj.id" [selected]="obj.id == selectedIdNationalite"> {{obj.libelle}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          <!--catégories films-->        
+          <form [formGroup]="form" >
+            <h4>Categories</h4>
+
+            <label style="    margin-right: 8px;
+            background-color: lightblue;
+            border-radius: 40px;"   formArrayName="orders"  *ngFor="let order of form.controls.orders.controls; let i = index">
+            <input style="margin-right: 2px;"   type="checkbox" (change)="onChange($event)" [formControlName]="i">
+            {{categList[i].libelle}}
+          </label>
+          <!-- <button type="submit">submit</button> -->
+        </form>
+  
+          <div class="text-center">
+            <button class="btn btn-primary mr-1">Sauvegarder</button>
+            <button class="btn btn-danger mr-1" type="reset" (click)="onReset()">Annuler</button>
+          </div>
+        </form>
+       
+      </div>
+    </div>
+  
+  </div>
+
+</ng-template>
+
+ //details films   
+<ng-template #template2>
+  <div class="content-content">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- main app container -->
+    <div class="card m-3">
+      <h5 class="card-header"><h4>Details Film</h4></h5>
+      <div class="card-body">
+     
+        <div class="text-center"><b>Titre du film:  <i>{{FilmListDeatils.titre}}</i></b></div>
+        <hr>
+        <div class="table-responsive">
+          <table table  class="align-middle mb-0 table table-borderless table-striped table-hover">
+            <tr ><th><b>Prix du film:</b></th> <td>{{FilmListDeatils.prix}}</td></tr>
+            <tr ><th><b>Durée du film:</b></th> <td>{{FilmListDeatils.duree}}</td></tr>
+            <tr ><th><b>Date de lancement du film:</b></th><td>{{FilmListDeatils.dateLancement}}</td> </tr>
+            <tr ><th><b>Diffusion du film:</b></th> <td>{{FilmListDeatils.diffusion}}</td></tr>
+            <tr ><th><b>Qualité du film:</b></th> <td>{{FilmListDeatils.QualiteId}}</td></tr>
+            <tr ><th><b>Nationalité du film:</b></th> <td>{{FilmListDeatils.NationaliteId}}</td></tr>
+            
+            <tr ><th><b>Catégories du film:</b> </th>
+              <td>
+            <span *ngFor="let item of CategorieList" >
+            <ul>{{item.libelle}}</ul>
+            </span></td>
+          </tr>
+
+          </table>
+
+        </div>
+ 
+
+    </div>
+    </div>
+  
+  </div>
+
+</ng-template>
