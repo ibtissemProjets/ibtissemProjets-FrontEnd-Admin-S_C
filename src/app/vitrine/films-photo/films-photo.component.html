@@ -16,9 +16,7 @@
   <div class="col-sm">
   </div>
  <div class="col-sm">
-  <button type="button" style="margin-top: 20px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
-  Ajouter film
-   </button> 
+
    </div> 
 </div>
 
@@ -33,10 +31,7 @@
         <tr>
           <th class="text-center">Id</th>
           <th class="text-center">Titre</th>
-          <th class="text-center">Prix</th>
-          <th class="text-center">Duree</th>
-          <th class="text-center">Date Lancement</th>
-          <th class="text-center">Diffusion</th>
+         
           <!--<th class="text-center">Qualite</th>
           <th class="text-center">Nationalite</th> -->
           <th class="text-center">Actions</th>
@@ -49,19 +44,17 @@
       
           <td class="text-center">{{film.id}}</td>
           <td class="text-center">{{film.titre}}</td>
-          <td class="text-center">{{film.prix}}</td>
-          <td class="text-center">{{film.duree}}</td>
-          <td class="text-center">{{film.dateLancement}}</td>
-          <td class="text-center">{{film.diffusion}}</td>
+      
           <td class="text-center">
-            <button type="button" (click)="openModal2(template2,film.id)"class="mr-2 btn-icon btn-icon-only btn btn-success">  <i class="pe-7s-note2
-              btn-icon-wrapper"> </i></button>
-            <button style=" margin:5px;" class="mr-2 btn-icon btn-icon-only btn btn-warning">
-              <i class="pe-7s-repeat btn-icon-wrapper"></i>
-            </button>
-            <button class="mr-2 btn-icon btn-icon-only btn btn-danger" (click)="deletefilm(film.id)">
-              <i class="pe-7s-trash btn-icon-wrapper"> </i>
-            </button>
+            <button type="button" style="margin-top: 20px;margin-right:2%" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
+          Photo Princ.
+               </button> 
+               <button type="button" style="margin-top: 20px;margin-right:2%" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
+            Photo Couverture
+                 </button> 
+                 <button type="button" style="margin-top: 20px;margin-right:2%" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
+                  Autres Photo
+                       </button> 
             <!--<button class="mr-2 btn-icon btn-icon-only btn btn-primary" >
               <i class="pe-7s-photo btn-icon-wrapper"> </i>
             </button>-->
@@ -79,7 +72,7 @@
   <pagination-controls class="text-center" (pageChange)="p = $event" class="float-right"></pagination-controls>
 </div>
 
- <!--ajout Films--> 
+ //ajout film
 <ng-template #template>
   <div class="content-content">
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -216,7 +209,7 @@
 
 </ng-template>
 
-<!--details Films-->  
+ //details films   
 <ng-template #template2>
   <div class="content-content">
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

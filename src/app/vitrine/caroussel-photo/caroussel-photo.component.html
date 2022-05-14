@@ -1,0 +1,111 @@
+<div class="text-center">
+  
+  <div class="main-card mb-3 card">  
+  <h3>Gestion Carroussel</h3>
+  </div>
+</div>
+<div class="row">
+ 
+ <div class="col-sm">
+   </div>
+   <div class="col-sm">
+  </div>
+  <div class="col-sm">
+  </div>
+ <div class="col-sm">
+  <button type="button" style="margin-top: 10px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  (click)="openModal(template)" >
+  Ajouter Photo Caroussel
+   </button> 
+   </div> 
+</div>
+
+<div class="image-preview" *ngFor="let img of data; let i = index">
+  <button style="       position: absolute;
+  margin-left: 9%;
+  margin-top: 12%;
+  background-color: transparent;
+  border-color: tan;
+  border-radius: 15%;
+">Supprimer</button>
+  <img  
+  src="data:image/jpeg;base64,{{img.url}}" height= "300px" width= "300px"
+    
+    alt="form.value.memberName"
+  />&nbsp;&nbsp;
+  <button *ngIf="base64ImgArray.length > 0" (click)="removeImage(i)" class="btn btn-danger btn-sm" style="border-radius:50%">X</button>
+  <br />
+  <!-- <mat-icon *ngIf="isNewImageAdded" style="color:green;margin-left:20px;">check_circle</mat-icon> -->
+</div>
+  <!-- <div class="flex-container wrap">
+    <mat-card class="example-card" *ngFor="let img of data">
+     
+        <img mat-card-image src="data:image/jpeg;base64,{{img.url}}" height= "300px" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+           {{img.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="updateText(img.id)">Update Text</button>
+          <button mat-raised-button style="float: right" color="primary" (click)="updateImage(img.id)">Update Image</button>
+        </mat-card-actions>
+      </mat-card>
+  </div> -->
+
+
+  <ng-template #template>
+
+    <div class="content-content">
+      <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+      <!-- main app container -->
+      <div class="card m-3">
+        
+        <div class="card-body">
+<!--         
+<div>
+  {{ imageError }}
+  <button class="btn btn-warning" type="button" (click)="filePicker.click()">
+    Pick Image
+  </button>
+  <input type="file" #filePicker (change)="onImagePicked($event)" />
+</div>
+   <div class="image-preview" *ngFor="let img of base64ImgArray; let i = index">
+    <img
+      [src]="img"
+      
+      alt="form.value.memberName"
+    />&nbsp;&nbsp;
+    <button *ngIf="base64ImgArray.length > 0" (click)="removeImage(i)" class="btn btn-danger btn-sm" style="border-radius:50%">X</button>
+    <br />
+   </div> -->
+   
+        
+ 
+ 
+    <form (submit)= "fileUploadHandler($event)" ngNativeValidate>
+      <div>
+        <input  type="file" style="  width: 96%" (change)="fileUpload($event)" required/>
+      </div>
+      <br />
+      <div>
+       <textarea [(ngModel)]='article.description' name="description" rows="10" style="width: 100%" required></textarea>
+      </div>
+      <!-- <button mat-raised-button type="submit" style="float: right" color="primary">Add Article</button> -->
+  </form>
+ 
+ 
+  <!-- <button mat-button mat-dialog-close>Close</button>
+  <button mat-raised-button>upload</button> -->
+ 
+        </div>
+      </div>
+    
+      <div class="text-center">
+        <button class="btn btn-primary mr-1"  (click)="addphoto()">Sauvegarder</button>
+        <button class="btn btn-danger mr-1" type="reset" (click)="onReset()">Annuler</button>
+      </div>
+    </div>
+  
+  </ng-template>

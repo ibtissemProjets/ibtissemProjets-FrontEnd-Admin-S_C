@@ -8,8 +8,7 @@ import {PagesLayoutComponent} from './Layout/pages-layout/pages-layout.component
 
 // Dashboards
 
-import {AnalyticsComponent} from './DemoPages/Dashboards/analytics/analytics.component';
-
+ 
  
 import { FilmComponent } from './film/film.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +16,8 @@ import { UserComponent } from './user/user.component';
 import { QualityComponent } from './quality/quality.component';
 import { CategoryComponent } from './category/category.component';
 import { NationalityComponent } from './nationality/nationality.component';
+import { CarousselPhotoComponent } from './vitrine/caroussel-photo/caroussel-photo.component';
+import { FilmsPhotoComponent } from './vitrine/films-photo/films-photo.component';
 
 const routes: Routes = [
 
@@ -33,6 +34,10 @@ const routes: Routes = [
 //login 
 
       //film 
+
+       
+      {path: 'carrousel-film', component:CarousselPhotoComponent, data: {extraParameter: 'dashboardsMenu'}},    
+      {path: 'photo-film', component:FilmsPhotoComponent, data: {extraParameter: 'dashboardsMenu'}},   
     
       {path: 'film', component:FilmComponent, data: {extraParameter: 'dashboardsMenu'}},
 
@@ -43,8 +48,7 @@ const routes: Routes = [
       {path: 'user', component:UserComponent, data: {extraParameter: 'dashboardsMenu'}},
       // Dashboads
 
-      {path: '', component: AnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}},
-
+ 
      
  
 

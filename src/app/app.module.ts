@@ -20,7 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
-import {ChartsModule} from 'ng2-charts';
+ 
 
 // LAYOUT
 
@@ -47,8 +47,7 @@ import {FooterComponent} from './Layout/Components/footer/footer.component';
 
 // Dashboards
 
-import {AnalyticsComponent} from './DemoPages/Dashboards/analytics/analytics.component';
-
+ 
 // Pages
 
 import {ForgotPasswordBoxedComponent} from './DemoPages/UserPages/forgot-password-boxed/forgot-password-boxed.component';
@@ -90,19 +89,7 @@ import {LayoutComponent} from './DemoPages/Forms/Elements/layout/layout.componen
 
 // Charts
 
-import {ChartjsComponent} from './DemoPages/Charts/chartjs/chartjs.component';
-
-// Chart.js Examples
-
-import {LineChartComponent} from './DemoPages/Charts/chartjs/examples/line-chart/line-chart.component';
-import {BarChartComponent} from './DemoPages/Charts/chartjs/examples/bar-chart/bar-chart.component';
-import {ScatterChartComponent} from './DemoPages/Charts/chartjs/examples/scatter-chart/scatter-chart.component';
-import {RadarChartComponent} from './DemoPages/Charts/chartjs/examples/radar-chart/radar-chart.component';
-import {PolarAreaChartComponent} from './DemoPages/Charts/chartjs/examples/polar-area-chart/polar-area-chart.component';
-import {BubbleChartComponent} from './DemoPages/Charts/chartjs/examples/bubble-chart/bubble-chart.component';
-import {DynamicChartComponent} from './DemoPages/Charts/chartjs/examples/dynamic-chart/dynamic-chart.component';
-import {DoughnutChartComponent} from './DemoPages/Charts/chartjs/examples/doughnut-chart/doughnut-chart.component';
-import {PieChartComponent} from './DemoPages/Charts/chartjs/examples/pie-chart/pie-chart.component';
+ 
 import { FilmComponent } from './film/film.component';
 import { LoginComponent } from './login/login.component';
 import { ToastNotificationsModule } from "ngx-toast-notifications";
@@ -114,6 +101,8 @@ import { NationalityComponent } from './nationality/nationality.component';
 import { CategoryComponent } from './category/category.component';
 import { QualityComponent } from './quality/quality.component';
 import { VitrineComponent } from './vitrine/vitrine.component';
+import { CarousselPhotoComponent } from './vitrine/caroussel-photo/caroussel-photo.component';
+import { FilmsPhotoComponent } from './vitrine/films-photo/films-photo.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -148,8 +137,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     // Dashboards
 
-    AnalyticsComponent,
-
+ 
     // User Pages
 
     ForgotPasswordBoxedComponent,
@@ -190,20 +178,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LayoutComponent,
 
     // CHARTS
-
-    ChartjsComponent,
-
-    // Chart.js Examples
-
-    LineChartComponent,
-    BarChartComponent,
-    DoughnutChartComponent,
-    RadarChartComponent,
-    PieChartComponent,
-    PolarAreaChartComponent,
-    DynamicChartComponent,
-    BubbleChartComponent,
-    ScatterChartComponent,
+ 
     FilmComponent,
     LoginComponent,
     UserComponent,
@@ -211,6 +186,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CategoryComponent,
     QualityComponent,
     VitrineComponent,
+    CarousselPhotoComponent,
+    FilmsPhotoComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -233,7 +210,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     // Charts
 
-    ChartsModule,
+    
   ],
   providers: [
     {
